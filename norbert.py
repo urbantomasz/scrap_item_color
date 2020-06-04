@@ -68,4 +68,4 @@ def scrape_data(url, csv_file_name):
             writer.writerow([href,code,dominant_color_text])
 
 if __name__ == "__main__":
-    scrape_data("https://www.montersi.pl/kamery-tubowe-ip?resultsPerPage=50", generate_file_name())
+    scrape_data("https://www.montersi.pl/kamery-tubowe-ip?resultsPerPage=150", generate_file_name())
