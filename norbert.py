@@ -19,7 +19,7 @@ def url_to_image(url, readFlag=cv2.IMREAD_COLOR):
     resp = urlopen(url)
     image = np.asarray(bytearray(resp.read()), dtype="uint8")
     image = cv2.imdecode(image, readFlag)
-
+    image = image[100:175, 110:200]
     return image
 
 def show_image(image):
@@ -30,7 +30,7 @@ def show_image(image):
 def get_dominant_color(image):
     
     # usniecie mocno bialych pikseli
-    mask = np.logical_and.reduce((image[:,:,0]<253,image[:,:,1]<253,image[:,:,2]<253))
+    mask = np.logical_and.reduce((image[:,:,0]<240,image[:,:,1]<240,image[:,:,2]<240))
     image = image[mask] 
     array = image.reshape(-1,image.shape[-1])
     colors, count = np.unique(array, axis=0, return_counts=True)
@@ -39,7 +39,7 @@ def get_dominant_color(image):
 
 def closest_target_color(rgb_color):
     
-    TARGET_COLORS = {"ciemny":(0, 0, 0), "jasny":(255, 255, 255)}
+    TARGET_COLORS = {"Ciemny":(0, 0, 0), "Jasny":(255, 255, 255)}
     color_difference = lambda color1, color2: sum([abs(component1-component2) for component1, component2 in zip(color1, color2)])
     differences = [[color_difference(rgb_color, target_value), target_name] for target_name, target_value in TARGET_COLORS.items()]
     differences.sort()  # sorted by the first element of inner lists
