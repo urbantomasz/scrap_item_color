@@ -8,6 +8,13 @@ import numpy as np
 from matplotlib import pyplot as plt
 import re 
 
+"""
+def cropp_image_center(image, crop_w, crop_h):
+    h = image.shape[0]
+    w = image.shape[1]
+    cropped_img = img.crop(((w-50)//2, (h-50)//2, (w+50)//2, (h+50)//2))
+"""
+
 def url_to_image(url, readFlag=cv2.IMREAD_COLOR):
     resp = urlopen(url)
     image = np.asarray(bytearray(resp.read()), dtype="uint8")
